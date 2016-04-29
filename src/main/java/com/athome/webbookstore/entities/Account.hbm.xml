@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-20 11:19:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.athome.webbookstore.entities.Account" table="ACCOUNTS">
+        <id name="accountId" type="java.lang.Integer">
+            <column name="ACCOUNTID" />
+            <generator class="native" />
+        </id>
+        <property name="balance" type="float">
+            <column name="BALANCE" />
+        </property>
+    </class>
+</hibernate-mapping>

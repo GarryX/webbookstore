@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="book-*" class="com.athome.webbookstore.controllers.BookAction"
+			method="{1}">
+			<result name="books">/WEB-INF/pages/books.jsp</result>
+			<result name="book">/WEB-INF/pages/book.jsp</result>
+			<result name="cart">/WEB-INF/pages/cart.jsp</result>
+			<result name="error-1">/WEB-INF/pages/error-1.jsp</result>
+		</action>
+		<action name="cart-*" class="com.athome.webbookstore.controllers.CartAction"
+			method="{1}">
+			<result name="cart">/WEB-INF/pages/cart.jsp</result>
+			<result type="stream" name="Ajax">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="cash">/WEB-INF/pages/cash.jsp</result>
+			<result name="cahsed">/WEB-INF/pages/cahsed.jsp</result>
+		</action>
+		<action name="user-*" class="com.athome.webbookstore.controllers.UserAction" method="{1}">
+			<result name="check">/WEB-INF/pages/check.jsp</result>
+			<result name="checked">/WEB-INF/pages/checked.jsp</result>
+		</action>
+
+	</package>
+
+	<include file="example.xml" />
+
+	<!-- Add packages here -->
+
+</struts>

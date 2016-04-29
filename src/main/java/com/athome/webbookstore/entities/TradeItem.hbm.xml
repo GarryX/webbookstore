@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-20 11:19:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.athome.webbookstore.entities.TradeItem" table="TRADEITEMS">
+        <id name="tradeItemId" type="java.lang.Integer">
+            <column name="TRADEITEMID" />
+            <generator class="native" />
+        </id>
+        <property name="quantity" type="int">
+            <column name="QUANTITY" />
+        </property>
+        <property name="bookId" type="java.lang.Integer">
+            <column name="BOOKID" />
+        </property>
+        <property name="tradeId" type="java.lang.Integer">
+            <column name="TRADEID" />
+        </property>
+    </class>
+</hibernate-mapping>

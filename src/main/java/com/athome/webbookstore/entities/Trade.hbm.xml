@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-20 11:19:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.athome.webbookstore.entities.Trade" table="TRADES">
+        <id name="tradeId" type="java.lang.Integer">
+            <column name="TRADEID" />
+            <generator class="native" />
+        </id>
+        <property name="tradeTime" type="java.util.Date">
+            <column name="TRADETIME" />
+        </property>
+        <set name="items" table="TRADEITEMS" inverse="true" lazy="true" >
+            <key>
+                <column name="TRADEID" />
+            </key>
+            <one-to-many class="com.athome.webbookstore.entities.TradeItem" />
+        </set>
+        <property name="userId" type="java.lang.Integer">
+            <column name="USERID" />
+        </property>
+    </class>
+</hibernate-mapping>

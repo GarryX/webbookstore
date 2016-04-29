@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<bean id="bookDao" class="com.athome.webbookstore.dao.impl.BookDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="accountDao" class="com.athome.webbookstore.dao.impl.AccountDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="tradeDao" class="com.athome.webbookstore.dao.impl.TradeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userDao" class="com.athome.webbookstore.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="tradeItemDao" class="com.athome.webbookstore.dao.impl.TradeItemDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bookAction" class="com.athome.webbookstore.controllers.BookAction"
+		scope="prototype">
+		<property name="bookService" ref="bookService"></property>
+	</bean>
+	<bean id="bookService" class="com.athome.webbookstore.services.BookService">
+		<property name="bookDaoImpl" ref="bookDao"></property>
+	</bean>
+	<bean id="cartService" class="com.athome.webbookstore.services.CartService">
+		<property name="accountDaoImpl" ref="accountDao"></property>
+		<property name="bookDaoImpl" ref="bookDao"></property>
+		<property name="tradeDaoImpl" ref="tradeDao"></property>
+		<property name="userDaoImpl" ref="userDao"></property>
+		<property name="tradeItemDaoImpl" ref="tradeItemDao"></property>
+	</bean>
+	<bean id="cartAction" class="com.athome.webbookstore.controllers.CartAction"
+		scope="prototype">
+		<property name="cartService" ref="cartService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="accountService" ref="accountService"></property>
+		<property name="bookService" ref="bookService"></property>
+	</bean>
+	<bean id="userService" class="com.athome.webbookstore.services.UserService">
+		<property name="userDaoImpl" ref="userDao"></property>
+		<property name="bookDaoImpl" ref="bookDao"></property>
+		<property name="tradeDaoImpl" ref="tradeDao"></property>
+		<property name="tradeItemDaoImpl" ref="tradeItemDao"></property>
+	</bean>
+	<bean id="accountService" class="com.athome.webbookstore.services.AccountService">
+		<property name="accountDaoImpl" ref="accountDao"></property>
+	</bean>
+	<bean id="userAction" class="com.athome.webbookstore.controllers.UserAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+</beans>
