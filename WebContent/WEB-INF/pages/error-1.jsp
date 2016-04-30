@@ -8,8 +8,8 @@
 </head>
 <body>
 	<center>
-		<h3>Errors Occurred During Adding Cargo to Cart!</h3><br><br>
-		<a href="listBooks?">Return To Shop</a>
+		<h3>添加失败!</h3><br><br>
+		<a href="listBooks?">返回购物</a>
 	</center>
 </body>
 </html>

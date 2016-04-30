@@ -9,9 +9,10 @@
 </head>
 <body>
 	<center>
+		<!-- 提交查询购物记录的表单 -->
 		<s:form action="user-checking" method="post">
 			<s:textfield label="UserName" name="userName"></s:textfield>
-			<s:submit value="Check"></s:submit>
+			<s:submit value="查询"></s:submit>
 		</s:form>
 	</center>
 </body>

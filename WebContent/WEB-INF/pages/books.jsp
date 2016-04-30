@@ -10,6 +10,9 @@
 <script type="text/javascript" src="scripts/jquery-1.12.0.js"></script>
 <script type="text/javascript">
 	$(function() {
+		/* 为了保证使用条件查询之后使用跳页，翻页等操作中查询条件依然有效，
+		在点击当前页面中的每个链接的时候，都追加隐藏域中的minPrice及
+		maxPrice参数。 */
 		$("a").click(function() {
 			var serializeVal = $(":hidden").serialize();
 			window.location.href = this.href + "&" + serializeVal;
@@ -20,24 +23,25 @@
 </head>
 <body>
 	<center>
-		<s:debug></s:debug>
 		<c:if test="${param.title != null }">
 			您已经将<font color="red">${param.title }</font>添加到购物车中
 			<br>
 			<br>
 		</c:if>
 		<c:if test="${!empty sessionScope.shoppingCart.shoppingCartItems }">
-			您的购物车中共有${sessionScope.shoppingCart.totalBookNumber }件商品，<a
-				href="book-checkCart?bookId=${book.id }&pageNo=${page.pageNo}">查看购物车</a>
+			您的购物车中共有${sessionScope.shoppingCart.totalBookNumber }件商品，
+			<a href="book-checkCart?bookId=${book.id }&pageNo=${page.pageNo}">查看购物车</a>
 			<br>
 		</c:if>
-		<input type="hidden" name="minPrice" value="${param.minPrice }" /> <input
-			type="hidden" name="maxPrice" value="${param.maxPrice }" /> <br>
+		<!-- 保存条件查询时的参数 -->
+		<input type="hidden" name="minPrice" value="${param.minPrice }" /> 
+		<input type="hidden" name="maxPrice" value="${param.maxPrice }" /> 
+		<br>
 		<br>
 		<s:form action="book-listBooks" method="get" theme="simple">
 			Price: <s:textfield name="minPrice" size="1"></s:textfield>
 				   - <s:textfield name="maxPrice" size="1"></s:textfield>
-			<s:submit value="Check"></s:submit>
+					<s:submit value="查询"></s:submit>
 		</s:form>
 		<table cellpadding="10">
 			<s:iterator value="#request.page.list" var="book">
@@ -45,8 +49,7 @@
 					<td><a href="book-listBook?bookId=${book.id }">${book.title }</a><br>${book.author }</td>
 					<td>${book.price }</td>
 					<td><a href="book-addToCart?bookId=${book.id }&pageNo=
-						${page.pageNo}&title=${book.title }">
-						Add To Cart</a></td>
+						${page.pageNo}&title=${book.title }">添加到购物车</a></td>
 				</tr>
 			</s:iterator>
 		</table>
@@ -62,10 +65,11 @@
 		</s:if>
 		<br> <br>
 		<s:form action="book-listBooks" theme="simple" method="get">
-			Jump To Page <s:textfield name="pageNo" size="1"></s:textfield>
+			跳转至 第<s:textfield name="pageNo" size="1"></s:textfield>页
+			<!-- 保存条件查询时的参数 -->
 			<input type="hidden" name="minPrice" value="${param.minPrice }" />
 			<input type="hidden" name="maxPrice" value="${param.maxPrice }" />
-			<s:submit value="Go"></s:submit>
+			<s:submit value="确认"></s:submit>
 		</s:form>
 	</center>
 </body>

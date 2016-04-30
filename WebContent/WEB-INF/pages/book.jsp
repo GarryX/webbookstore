@@ -9,6 +9,9 @@
 <script type="text/javascript" src="scripts/jquery-1.12.0.js"></script>
 <script type="text/javascript">
 	$(function() {
+		/* 为了保证使用条件查询之后返回到书目列表页中查询条件依然有效，
+		在点击当前页面中的每个链接的时候，都追加隐藏域中的minPrice及
+		maxPrice参数。 */
 		$("a").click(function() {
 			var serializeVal = $(":hidden").serialize();
 			window.location.href = this.href + "&" + serializeVal;
@@ -19,28 +22,29 @@
 </head>
 <body>
 	<center>
-		<s:debug></s:debug>
+		<!-- 两个隐藏域分别保存从上一个页面传过来的minPrice及maxPrice参数 -->
 		<input type="hidden" name="minPrice" value="${param.minPrice }" /> 
 		<input type="hidden" name="maxPrice" value="${param.maxPrice }" />
 		<table cellpadding="10">
 			<tr>
-				<td>Title</td>
-				<td>: ${book.title }</td>
+				<td>书名</td>
+				<td>:&nbsp;&nbsp; ${book.title }</td>
 			</tr>
 			<tr>
-				<td>Author</td>
-				<td>: ${book.author }</td>
+				<td>作者</td>
+				<td>:&nbsp;&nbsp; ${book.author }</td>
 			</tr>
 			<tr>
-				<td>Price</td>
-				<td>: ${book.price }</td>
+				<td>单价</td>
+				<td>:&nbsp;&nbsp; ${book.price }</td>
 			</tr>
 			<tr>
-				<td>Launched Date</td>
-				<td>: <s:date name="#attr.book.publishingDate" format="yy-MM-dd" /></td>
+				<td>发行日期</td>
+				<!-- 使用Struts2的date标签格式化出版日期的输出 -->
+				<td>:&nbsp;&nbsp; <s:date name="#attr.book.publishingDate" format="yy-MM-dd" /></td>
 			</tr>
 		</table>
-		<a href="book-listBooks?">Return To Shop</a>
+		<a href="book-listBooks?">返回购物</a>
 	</center>
 </body>
 </html>

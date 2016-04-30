@@ -8,11 +8,11 @@
 </head>
 <body>
 	<center>
-		<h1>Checkout Succeeded</h1><br><br>
-		<a href="book-listBooks">Back To Shop</a>
+		<h1>结账成功！</h1><br><br>
+		<a href="book-listBooks">返回购物</a>
 		<br>
 		<br>
-		<a href="user-checkHistory">See What You Have Bought</a>
+		<a href="user-checkHistory">查看购物记录</a>
 	</center>
 </body>
 </html>

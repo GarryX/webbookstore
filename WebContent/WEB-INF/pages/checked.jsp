@@ -11,15 +11,15 @@
 	<center>
 		<br>
 		<br>
-		User: <font color="red">${user.userName }</font>
+		用户: <font color="red">${user.userName }</font>
 		<br>
 		<table cellpadding="5" cellspacing="0" border="1">
 			<c:forEach items="${trades }" var="trade">
 				<tr ><td colspan="3"><c:out value="TradeTime: ${trade.tradeTime }"></c:out></td></tr>
 				<tr>
-					<td>Title</td>
-					<td>Price</td>
-					<td>Quantity</td>
+					<td>书名</td>
+					<td>单价</td>
+					<td>数量</td>
 				</tr>
 				<c:forEach items="${trade.items }" var="item">
 					<tr>
@@ -34,7 +34,7 @@
 		</table>
 		<br>
 		<br>
-		<a href="book-listBooks">Go To Shop</a>
+		<a href="book-listBooks">继续购物</a>
 	</center>
 </body>
 </html>

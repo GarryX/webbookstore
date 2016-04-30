@@ -8,10 +8,10 @@
 </head>
 <body>
 	<center>
-		<a href="book-listBooks">Welcome To My WebBookStore</a>
+		<a href="book-listBooks">点击进入商店</a>
 		<br>
 		<br>
-		<a href="user-checkHistory">Check My Purchasing History</a>
+		<a href="user-checkHistory">查询购物记录</a>
 	</center>
 </body>
 </html>
