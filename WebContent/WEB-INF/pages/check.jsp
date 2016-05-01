@@ -11,7 +11,7 @@
 	<center>
 		<!-- 提交查询购物记录的表单 -->
 		<s:form action="user-checking" method="post">
-			<s:textfield label="UserName" name="userName"></s:textfield>
+			<s:textfield label="用户名" name="userName"></s:textfield>
 			<s:submit value="查询"></s:submit>
 		</s:form>
 	</center>

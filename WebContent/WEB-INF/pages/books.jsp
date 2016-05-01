@@ -39,7 +39,7 @@
 		<br>
 		<br>
 		<s:form action="book-listBooks" method="get" theme="simple">
-			Price: <s:textfield name="minPrice" size="1"></s:textfield>
+			价格: <s:textfield name="minPrice" size="1"></s:textfield>
 				   - <s:textfield name="maxPrice" size="1"></s:textfield>
 					<s:submit value="查询"></s:submit>
 		</s:form>

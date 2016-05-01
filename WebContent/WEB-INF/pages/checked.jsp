@@ -10,12 +10,11 @@
 <body>
 	<center>
 		<br>
-		<br>
 		用户: <font color="red">${user.userName }</font>
 		<br>
 		<table cellpadding="5" cellspacing="0" border="1">
 			<c:forEach items="${trades }" var="trade">
-				<tr ><td colspan="3"><c:out value="TradeTime: ${trade.tradeTime }"></c:out></td></tr>
+				<tr ><td colspan="3"><c:out value="交易时间: ${trade.tradeTime }"></c:out></td></tr>
 				<tr>
 					<td>书名</td>
 					<td>单价</td>
@@ -32,7 +31,6 @@
 				<br>
 			</c:forEach>
 		</table>
-		<br>
 		<br>
 		<a href="book-listBooks">继续购物</a>
 	</center>
