@@ -24,24 +24,21 @@ public class CartAction extends ActionSupport implements RequestAware {
 
 	private static final long serialVersionUID = 1L;
 	private CartService cs;
+	private UserService us;
+	private AccountService as;
+	private BookService bs;
 
 	public void setCartService(CartService cs) {
 		this.cs = cs;
 	}
 
-	private UserService us;
-
 	public void setUserService(UserService us) {
 		this.us = us;
 	}
 
-	private AccountService as;
-
 	public void setAccountService(AccountService as) {
 		this.as = as;
 	}
-
-	private BookService bs;
 
 	public void setBookService(BookService bs) {
 		this.bs = bs;
@@ -58,19 +55,21 @@ public class CartAction extends ActionSupport implements RequestAware {
 		ShoppingCart sc = WebUtils.getShoppingCart(req);
 		String bookIdStr = req.getParameter("bookId");
 		int bookId = -1;
-		try {
-			bookId = Integer.parseInt(bookIdStr);
-			sc.removeItem(bookId);
-		} catch (NumberFormatException e) {
+		if (sc != null) {
+			try {
+				bookId = Integer.parseInt(bookIdStr);
+				sc.removeItem(bookId);
+			} catch (NumberFormatException e) {}
 		}
-
 		return "cart";
 	}
 
 	public String clearCart() {
 		HttpServletRequest req = ServletActionContext.getRequest();
 		ShoppingCart sc = WebUtils.getShoppingCart(req);
-		cs.removeFromCart(sc);
+		if(sc != null){
+			cs.removeFromCart(sc);
+		}
 		return "cart";
 	}
 
@@ -83,10 +82,9 @@ public class CartAction extends ActionSupport implements RequestAware {
 		try {
 			id = Integer.parseInt(idStr);
 			quantity = Integer.parseInt(quantityStr);
-		} catch (NumberFormatException e) {
-		}
+		} catch (NumberFormatException e) {}
 		ShoppingCart sc = WebUtils.getShoppingCart(req);
-		if (id > 0 && quantity > 0) {
+		if (sc != null && id > 0 && quantity > 0) {
 			cs.updateItemQuantity(sc, id, quantity);
 		}
 		float totalBill = sc.getTotalCost();
@@ -123,7 +121,9 @@ public class CartAction extends ActionSupport implements RequestAware {
 			return "cash";
 		}
 		ShoppingCart sc = WebUtils.getShoppingCart(req);
-		cs.cashing(sc, userName, accountId);
+		if (sc != null) {
+			cs.cashing(sc, userName, accountId);
+		}
 		return "cahsed";
 	}
 
@@ -132,9 +132,10 @@ public class CartAction extends ActionSupport implements RequestAware {
 		StringBuffer errors = new StringBuffer("");
 		ShoppingCart sc = WebUtils.getShoppingCart(request);
 		Account account = as.getAccount(Integer.parseInt(accountId));
-		System.out.println(account);
-		if (account.getBalance() < sc.getTotalCost()) {
-			errors.append("Óà¶î²»×ã!");
+		if (sc != null && account != null) {
+			if (account.getBalance() < sc.getTotalCost()) {
+				errors.append("Óà¶î²»×ã!");
+			}
 		}
 		return errors;
 	}
@@ -143,11 +144,13 @@ public class CartAction extends ActionSupport implements RequestAware {
 	protected StringBuffer vadidateStoreNumber(HttpServletRequest request) {
 		StringBuffer errors = new StringBuffer("");
 		ShoppingCart sc = WebUtils.getShoppingCart(request);
-		for (ShoppingCartItem item : sc.getShoppingCartItems()) {
-			int quantity = item.getQuantity();
-			int number = bs.getBook(item.getBook().getId()).getStoreNumber();
-			if (quantity > number) {
-				errors.append(item.getBook().getTitle() + "¿â´æ²»×ã!");
+		if (sc != null) {
+			for (ShoppingCartItem item : sc.getShoppingCartItems()) {
+				int quantity = item.getQuantity();
+				int number = bs.getBook(item.getBook().getId()).getStoreNumber();
+				if (quantity > number) {
+					errors.append(item.getBook().getTitle() + "¿â´æ²»×ã!");
+				}
 			}
 		}
 		return errors;

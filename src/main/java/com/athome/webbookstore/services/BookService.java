@@ -9,6 +9,7 @@ import com.athome.webbookstore.webitems.ShoppingCart;
 public class BookService {
 
 	private BookDaoImpl bd;
+	
 	public void setBookDaoImpl(BookDaoImpl bd) {
 		this.bd = bd;
 	}

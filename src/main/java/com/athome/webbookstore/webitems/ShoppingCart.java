@@ -9,9 +9,12 @@ import com.athome.webbookstore.entities.Book;
 public class ShoppingCart {
 	private Map<Integer, ShoppingCartItem> books = new HashMap<>();
 
-	// 向购物车中添加一本书
+	/**
+	 *  向购物车中添加一本书,检查购物车有没有该书，若没有，则创建对应的ShoppingCartItem对象，并将其加放到books中
+	 *	若有，使其数量+1
+	 *  @param book
+	 */
 	public void addBook(Book book) {
-		// 检查购物车有没有该书，若有，使其数量+1
 		ShoppingCartItem sci = books.get(book.getId());
 		if (sci == null) {
 			sci = new ShoppingCartItem(book);
@@ -19,7 +22,6 @@ public class ShoppingCart {
 		} else {
 			sci.increase();
 		}
-		// 若没有，则创建对应的ShoppingCartItem对象，并将其加放到books中
 
 	}
 

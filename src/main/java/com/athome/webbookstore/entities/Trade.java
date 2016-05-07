@@ -6,14 +6,15 @@ import java.util.Set;
 
 public class Trade {
 
-	// Trade 对象对应的 id
 	private Integer tradeId;
 
-	// 交易的时间
 	private Date tradeTime;
 
 	// Trade 关联的多个 TradeItem
 	private Set<TradeItem> items = new LinkedHashSet<TradeItem>();
+	
+	// 和 Trade 关联的 User 的 userId
+	private Integer userId;
 
 	public void setItems(Set<TradeItem> items) {
 		this.items = items;
@@ -23,8 +24,6 @@ public class Trade {
 		return items;
 	}
 
-	// 和 Trade 关联的 User 的 userId
-	private Integer userId;
 
 	public Integer getTradeId() {
 		return tradeId;

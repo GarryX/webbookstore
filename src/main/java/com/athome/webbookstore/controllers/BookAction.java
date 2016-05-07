@@ -34,16 +34,13 @@ public class BookAction extends ActionSupport implements RequestAware {
 		String maxPriceStr = ServletActionContext.getRequest().getParameter("maxPrice");
 		try {
 			minPrice = Float.parseFloat(minPriceStr);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		try {
 			maxPrice = Float.parseFloat(maxPriceStr);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		try {
 			pageNo = Integer.parseInt(pageNoStr);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 
 		cb = new CriteriaBook(minPrice, maxPrice, pageNo);
 		Page<Book> page = bs.getPage(cb);
@@ -56,8 +53,7 @@ public class BookAction extends ActionSupport implements RequestAware {
 		int bookId = -1;
 		try {
 			bookId = Integer.parseInt(bookIdStr);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		Book book = bs.getBook(bookId);
 		request.put("book", book);
 		return "book";
@@ -69,8 +65,7 @@ public class BookAction extends ActionSupport implements RequestAware {
 		int bookId = -1;
 		try {
 			bookId = Integer.parseInt(bookIdStr);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 
 		boolean flag = false;
 		if (bookId > 0) {

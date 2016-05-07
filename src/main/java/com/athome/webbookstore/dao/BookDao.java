@@ -24,7 +24,9 @@ public interface BookDao {
 	// 返回指定 id 的 book 的 storeNumber 字段的值
 	int getStoreNumber(Integer id);
 
-	// 根据传入的 ShoppingCartItem 的集合,
-	// 批量更新 books 数据表的 storenumber 和 salesnumber 字段的值
+	/* 
+	 * 根据传入的 ShoppingCartItem 的集合,
+	 * 批量更新 books 数据表的 storenumber 和 salesnumber 字段的值
+	 */ 
 	void batchUpdateStoreNumberAndSalesAmount(Collection<ShoppingCartItem> items);
 }

@@ -48,7 +48,6 @@ public class BookDaoImpl extends BaseDao implements BookDao {
 		return (int) getSession().createQuery(sql).setInteger(0, id).uniqueResult();
 	}
 
-	// 客户结账时更新库存及销量
 	@Override
 	public void batchUpdateStoreNumberAndSalesAmount(Collection<ShoppingCartItem> items) {
 		String sql = "UPDATE books b SET b.salesamount = b.salesamount + ?, "

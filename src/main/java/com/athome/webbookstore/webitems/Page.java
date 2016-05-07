@@ -21,6 +21,7 @@ public class Page<T> {
 		this.pageNo = pageNo;
 	}
 	
+	//获取pageNo的同时将其限定在正确的取值范围内
 	public int getPageNo() {
 		if(pageNo < 1){
 			pageNo = 1;
@@ -38,10 +39,12 @@ public class Page<T> {
 		return list;
 	}
 	
+	//将从数据库中查询到的对象集合赋给list成员变量
 	public void setList(List<T> list) {
 		this.list = list;
 	}
 	
+	//根据数据库中查询到的记录数确定总页面数
 	public int getTotalPageNumber(){
 		int totalPageNubmer = (int)totalItemNumber/pageSize;
 		if((totalItemNumber % pageSize) != 0){
@@ -54,6 +57,7 @@ public class Page<T> {
 		this.totalItemNumber = totalItemNumber;
 	}
 	
+	//判断是否有下一页
 	public boolean hasNextPage(){
 		if(getPageNo() != getTotalPageNumber()){
 			return true;
@@ -61,6 +65,7 @@ public class Page<T> {
 		return false;
 	}
 	
+	//判断是否有前一页
 	public boolean hasPrevPage(){
 		if(getPageNo() != 1){
 			return true;

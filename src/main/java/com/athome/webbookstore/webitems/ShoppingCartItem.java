@@ -30,7 +30,7 @@ public class ShoppingCartItem {
 		this.quantity = quantity;
 	}
 
-	// 返回该商品在购物车中的钱总数
+	// 返回该商品在购物车中账单金额
 	public float getItemCost() {
 		return book.getPrice() * quantity;
 	}
